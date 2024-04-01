@@ -18,6 +18,23 @@ func main() {
 	fmt.Scan(&choice)
 
 	if choice == 1 {
-		fmt.Printf("Balance: %f.2\n", accountBalance)
+		logBalance(accountBalance)
+	} else if choice == 2 {
+		fmt.Print("Deposit amount: ")
+		var depositAmount float64
+		fmt.Scan(&depositAmount)
+		accountBalance += depositAmount
+		logBalance(accountBalance)
+	} else if choice == 3 {
+		fmt.Print("Withdraw amount: ")
+		var withdrawAmount float64
+		fmt.Scan(&withdrawAmount)
+		accountBalance -= withdrawAmount
+		logBalance(accountBalance)
 	}
+}
+
+func logBalance(accountBalance float64) {
+	fmt.Printf("Balance: %.2f\n", accountBalance)
+
 }
