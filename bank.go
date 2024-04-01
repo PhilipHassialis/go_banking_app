@@ -31,6 +31,8 @@ func main() {
 		fmt.Scan(&withdrawAmount)
 		accountBalance -= withdrawAmount
 		logBalance(accountBalance)
+	} else {
+		fmt.Println("Goodbye!")
 	}
 }
 
