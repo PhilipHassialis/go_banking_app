@@ -4,6 +4,8 @@ import "fmt"
 
 func main() {
 
+	accountBalance := 1000.0
+
 	fmt.Println("Welcome to Go bank")
 	fmt.Println("----------------------------------")
 	fmt.Println("1. Check balance")
@@ -15,4 +17,7 @@ func main() {
 	fmt.Print("Your choice: ")
 	fmt.Scan(&choice)
 
+	if choice == 1 {
+		fmt.Printf("Balance: %f.2\n", accountBalance)
+	}
 }
