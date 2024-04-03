@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/fs"
+	"os"
+)
 
 func main() {
 
@@ -25,6 +29,7 @@ func main() {
 			}
 
 			accountBalance += depositAmount
+			writeBalanceToFile(accountBalance)
 			logBalance(accountBalance)
 		case 3:
 			fmt.Print("Withdraw amount: ")
@@ -42,13 +47,20 @@ func main() {
 			}
 
 			accountBalance -= withdrawAmount
+			writeBalanceToFile(accountBalance)
 			logBalance(accountBalance)
 		case 4:
 			fmt.Println("Goodbye!")
+			return
 		default:
 			fmt.Println("Wrong selection")
 		}
 	}
+}
+
+func writeBalanceToFile(balance float64) {
+	var balanceText = fmt.Sprint(balance)
+	os.WriteFile("balance.txt", []byte(balanceText), fs.ModePerm)
 }
 
 func userInput() int {
