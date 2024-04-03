@@ -10,9 +10,11 @@ func main() {
 	for {
 		printMenu()
 		choice := userInput()
-		if choice == 1 {
+
+		switch choice {
+		case 1:
 			logBalance(accountBalance)
-		} else if choice == 2 {
+		case 2:
 			fmt.Print("Deposit amount: ")
 			var depositAmount float64
 			fmt.Scan(&depositAmount)
@@ -24,7 +26,7 @@ func main() {
 
 			accountBalance += depositAmount
 			logBalance(accountBalance)
-		} else if choice == 3 {
+		case 3:
 			fmt.Print("Withdraw amount: ")
 			var withdrawAmount float64
 			fmt.Scan(&withdrawAmount)
@@ -41,9 +43,10 @@ func main() {
 
 			accountBalance -= withdrawAmount
 			logBalance(accountBalance)
-		} else {
+		case 4:
 			fmt.Println("Goodbye!")
-			break
+		default:
+			fmt.Println("Wrong selection")
 		}
 	}
 }
