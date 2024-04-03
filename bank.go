@@ -71,12 +71,12 @@ func main() {
 func getBalanceFromFile() (float64, error) {
 	data, err := os.ReadFile(accountBalanceFile)
 	if err != nil {
-		return 0, errors.New("Failed to read balance file")
+		return 0, errors.New("failed to read balance file")
 	}
 	balanceText := string(data)
 	balance, err := strconv.ParseFloat(balanceText, 64)
 	if err != nil {
-		return 0, errors.New("Failed to parse balance")
+		return 0, errors.New("failed to parse balance")
 	}
 	return balance, nil
 }
