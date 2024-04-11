@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/Pallinder/go-randomdata"
 	"github.com/PhilipHassialis/go_banking_app/fileops"
 )
 
@@ -80,4 +81,5 @@ func logBalance(accountBalance float64) {
 func printHeader() {
 	fmt.Println("Welcome to Go bank")
 	fmt.Println("----------------------------------")
+	fmt.Println("Reach us 24/7 at", randomdata.PhoneNumber())
 }
