@@ -1,18 +1,16 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"io/fs"
-	"os"
-	"strconv"
+
+	"github.com/PhilipHassialis/go_banking_app/fileops"
 )
 
 const accountBalanceFile = "balance.txt"
 
 func main() {
 
-	accountBalance, err := getFloatFromFile(accountBalanceFile)
+	accountBalance, err := fileops.GetFloatFromFile(accountBalanceFile)
 	if err != nil {
 		fmt.Println("ERROR")
 		fmt.Println(err)
@@ -39,7 +37,7 @@ func main() {
 			}
 
 			accountBalance += depositAmount
-			writeFloatToValue(accountBalance, accountBalanceFile)
+			fileops.WriteFloatToValue(accountBalance, accountBalanceFile)
 			logBalance(accountBalance)
 		case 3:
 			fmt.Print("Withdraw amount: ")
@@ -57,7 +55,7 @@ func main() {
 			}
 
 			accountBalance -= withdrawAmount
-			writeFloatToValue(accountBalance, accountBalanceFile)
+			fileops.WriteFloatToValue(accountBalance, accountBalanceFile)
 			logBalance(accountBalance)
 		case 4:
 			fmt.Println("Goodbye!")
@@ -66,24 +64,6 @@ func main() {
 			fmt.Println("Wrong selection")
 		}
 	}
-}
-
-func getFloatFromFile(fileName string) (float64, error) {
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		return 0, errors.New("failed to read file")
-	}
-	valueText := string(data)
-	value, err := strconv.ParseFloat(valueText, 64)
-	if err != nil {
-		return 0, errors.New("failed to parse stored value")
-	}
-	return value, nil
-}
-
-func writeFloatToValue(value float64, fileName string) {
-	var valueText = fmt.Sprint(value)
-	os.WriteFile(fileName, []byte(valueText), fs.ModePerm)
 }
 
 func userInput() int {
